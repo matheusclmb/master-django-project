@@ -1,0 +1,9 @@
+{% extends 'coreapp/partials/base.html' %} {% block title %}Login{% endblock %}
+{% block content%}
+<div class="form-login-container">
+  <form method="post" class="form-login">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Log In</button>
+  </form>
+</div>
+{% endblock %}

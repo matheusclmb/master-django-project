@@ -1,0 +1,222 @@
+/***
+    The new CSS reset - version 1.6.1 (last updated 25.5.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+:root {
+  --dark-blue: #1f4690;
+  --light-blue: #3a5ba0;
+  --strong-yellow: #ffa500;
+  --light-yellow: #ffe5b4;
+}
+/* 
+html,
+body,
+main {
+  height: 100%;
+} */
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--light-blue);
+}
+
+.auth-need {
+  display: flex;
+  height: inherit;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  align-items: center;
+}
+
+.auth-need p {
+  margin-bottom: 10px;
+}
+
+.auth-need a {
+  margin: 5px;
+  color: var(--strong-yellow);
+}
+
+.form-login-container {
+  display: flex;
+  height: inherit;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.form-login {
+  flex: 1;
+}
+
+.form-login label {
+  color: var(--strong-yellow);
+  margin-right: 5px;
+}
+
+#id_password {
+  margin-left: 2px;
+}
+
+.form-login input {
+  width: 180px;
+  padding: 5px;
+  border: 1px solid var(--light-blue);
+  background-color: var(--dark-blue);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.form-login button {
+  margin-top: 5px;
+  width: 263px;
+  padding: 4px;
+  border: 1px solid var(--strong-yellow);
+  background-color: var(--dark-blue);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.form-login button:hover {
+  cursor: pointer;
+  color: var(--dark-blue);
+  background-color: var(--strong-yellow);
+}
+
+/* HEADER & NAV */
+
+.logo {
+  width: 50px;
+}
+
+.header {
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--dark-blue);
+}
+
+.logo-link {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.user-logged {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.media {
+  border-radius: 8px;
+  padding: 3px;
+  background-color: #ffa500;
+}

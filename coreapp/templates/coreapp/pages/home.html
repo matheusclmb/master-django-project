@@ -1,0 +1,14 @@
+{% extends 'coreapp/partials/base.html' %} {% block title %}Home{% endblock %}
+{% block content %} 
+{% if user.is_authenticated %}
+    {% include 'coreapp/partials/header.html' %}
+{% else %}
+    <div class="auth-need">
+    <div>
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %}
+Home {% endblock %} {% block content %}
+<header class="header">
+  <div class="header-container">
+    <h1 class="header_title">
+      <a href="{% url 'home' %}" class="logo-link">
+        <img
+          src="{% static '/coreapp/imgs/study.png' %}"
+          alt="Logo"
+          class="logo"
+        />
+        Master Django
+      </a>
+    </h1>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="{% url 'home' %}" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'weather' %}" class="nav-link">Weather App</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'home' %}" class="nav-link">Contact</a>
+        </li>
+      </ul>
+      <div class="user-logged">
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+      </div>
+    </nav>
+  </div>
+</header>
+{% endblock %}
