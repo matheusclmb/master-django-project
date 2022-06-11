@@ -1,6 +1,6 @@
 {% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %}
 Weather App {% endblock %} {% block content %} {% include 'coreapp/partials/header.html' %}
-<form method="POST">
+<form method="POST" class="weather-csrf">
   {% csrf_token %}
   <div class="field">
     <div class="weather-form">{{ form.name }}</div>

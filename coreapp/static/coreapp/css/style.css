@@ -103,6 +103,7 @@ body {
   color: #000;
   text-align: center;
   align-items: center;
+  margin-top: 400px;
 }
 
 .auth-need p {
@@ -120,6 +121,7 @@ body {
   justify-content: center;
   text-align: center;
   align-items: center;
+  margin-top: 400px;
 }
 
 .form-login {
@@ -175,7 +177,7 @@ body {
   height: 60px;
   justify-content: space-between;
   align-items: center;
-  background-color: #d5bdaf;
+  background-color: #457b9d;
 }
 
 .logo-link {
@@ -211,12 +213,49 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   padding: 0 20px;
   gap: 20px;
 }
 
 .media {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
   border-radius: 8px;
+  width: 222px;
   padding: 3px;
-  background-color: #ffa500;
+  background-color: #dcdcdc;
+}
+
+.weather-csrf {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.weather-csrf input {
+  border: 1px solid #000;
+  color: #fff;
+  width: 222px;
+  padding: 3px;
+  border-radius: 7px;
+  background-color: #457b9d70;
+}
+
+.weather-csrf button {
+  margin-top: 10px;
+  border-radius: 7px;
+  border: 1px solid #000;
+  background-color: #fff;
+  width: 100px;
+}
+
+.weather-csrf button:hover {
+  cursor: pointer;
+  background-color: #457b9d;
+  color: #fff;
 }
