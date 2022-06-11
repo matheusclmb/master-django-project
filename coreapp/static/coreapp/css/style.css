@@ -93,14 +93,14 @@ main {
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--light-blue);
+  background-color: #edede9;
 }
 
 .auth-need {
   display: flex;
   height: inherit;
   justify-content: center;
-  color: #fff;
+  color: #000;
   text-align: center;
   align-items: center;
 }
@@ -127,7 +127,7 @@ body {
 }
 
 .form-login label {
-  color: var(--strong-yellow);
+  color: #000;
   margin-right: 5px;
 }
 
@@ -138,8 +138,8 @@ body {
 .form-login input {
   width: 180px;
   padding: 5px;
-  border: 1px solid var(--light-blue);
-  background-color: var(--dark-blue);
+  border: 1px solid #e3d5ca;
+  background-color: #d5bdaf;
   border-radius: 8px;
   color: #fff;
 }
@@ -148,16 +148,16 @@ body {
   margin-top: 5px;
   width: 263px;
   padding: 4px;
-  border: 1px solid var(--strong-yellow);
-  background-color: var(--dark-blue);
+  border: 1px solid #e3d5ca;
+  background-color: #d5bdaf;
   border-radius: 8px;
   color: #fff;
 }
 
 .form-login button:hover {
   cursor: pointer;
-  color: var(--dark-blue);
-  background-color: var(--strong-yellow);
+  color: #000;
+  background-color: #d6ccc2;
 }
 
 /* HEADER & NAV */
@@ -175,7 +175,7 @@ body {
   height: 60px;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--dark-blue);
+  background-color: #d5bdaf;
 }
 
 .logo-link {
