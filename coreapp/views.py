@@ -1,5 +1,14 @@
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
+
+from django.urls import reverse, reverse_lazy
 from unicodedata import name
-from django.http import HttpResponse
+from requests.models import HTTPError
+from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 
 import requests
@@ -7,8 +16,11 @@ from coreapp.forms import SignUpForm
 from django.contrib.auth import authenticate, login
 
 from coreapp.forms import CityForm
-from .models import City
+from .models import City, ToDoList, ToDoItem
 
+import tmdbsimple as tmdb
+import random
+import json
 # Create your views here.
 
 
@@ -39,8 +51,11 @@ def weather(request):
     url = "https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=ddda7ff1dea2fcd997bac92e74f9185f"
 
     if request.method == "POST":
+
         form = CityForm(request.POST)
-        form.save()
+
+        if not City.objects.filter(name=form.data["name"]).exists():
+            form.save()
 
     form = CityForm()
 
@@ -48,18 +63,51 @@ def weather(request):
 
     weather_data = []
 
-    for city in cities:
-        r = requests.get(url.format(city)).json()
+    try:
+        for city in cities:
+            r = requests.get(url.format(city)).json()
 
-        city_weather = {
-            "city": city.name,
-            "temperature": r["main"]["temp"],
-            "description": r["weather"][0]["description"],
-            "icon": r["weather"][0]["icon"],
-        }
+            city_weather = {
+                "city": city.name,
+                "temperature": r["main"]["temp"],
+                "description": r["weather"][0]["description"],
+                "icon": r["weather"][0]["icon"],
+            }
 
-        weather_data.append(city_weather)
+            weather_data.append(city_weather)
+
+    except KeyError:
+        return HttpResponse("Error: City not found. Please delete from database. @ http://localhost:8000/admin/")
 
     context = {"weather_data": weather_data, "form": form}
 
     return render(request, "coreapp/pages/weather.html", context)
+
+
+def movie(request):
+
+    tmdb.API_KEY = "b02201f7ff269ad539f084c9223efc3e"
+
+    movie = tmdb.Movies()
+    random_page = movie.popular(page=random.randint(1, 100))
+    movie_id = random_page["results"][random.randint(1, 19)]["id"]
+    random_movie = tmdb.Movies(movie_id)
+    movie_info = random_movie.info()
+    movie_credits = random_movie.credits()
+
+    try:
+        context = {"title": random_movie.title,
+                   "release": random_movie.release_date,
+                   "author": random_movie.crew[0]["name"],
+                   "poster": random_movie.poster_path,
+                   "overview": random_movie.overview, }
+    except IndexError:
+        context = {"title": random_movie.title,
+                   "release": random_movie.release_date,
+                   "author": "No Director found",
+                   "poster": random_movie.poster_path,
+                   "overview": random_movie.overview, }
+    except HTTPError:
+        raise Http404("Movie not found")
+
+    return render(request, "coreapp/pages/moviegen.html", context)
