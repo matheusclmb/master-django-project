@@ -2,6 +2,32 @@
 {% block content %} 
 {% if user.is_authenticated %}
     {% include 'coreapp/partials/header.html' %}
+    <div class="about-container">
+        <div class="about-section">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <h3>About Master-Django:</h3>
+            <p>Master-Django is a project create by me (<a href="">@clmb</a>) with the purpouse to learn about the Django framework and to show to get my first job in this area. </p>
+            <p>PS: This project is to check my back-end knowledge, so bear with the front-end for now! 😅</p>
+            <h3>Applications:</h3>
+            <p>This project comes with 5 "Applications":</p>
+            <ul>
+                <li>Login/Sign up System - Using Django Model and Django Auth, you have to be logged in to enter the site. </li>
+                <li>Weather App - Using OpenWeather API, you can check the weather from cities you choose.</li>
+                <li>Movie Generator - Using TMDB (The Movie Database) API, the site will generate a random movie for you. Limited to 2.000 movies</li>
+                <li>Todo List - Using Django Model, you can create a todo list and delete. With registration date and due date.</li>
+                <li>Contact Form - Using Django Model, you can contact me using the form and django will foward to my email.</li>
+            </ul>
+            <h3>Difficulties i had:</h3>
+            <p>While i'm still learning i faced a lot of problems that i managed to fix by searching docs and googling</p>
+            <ul>
+                <li>Weather App - When user typed a city that didn't exist, it would return a KeyError </li>
+                <li>Movie App - Because TMDB have more than 70.000 movie entries and lot of them were deleted but stayed in API, i faced a lot of problems while choosing a random movie ID.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>Django is a strong and fun framework. I still have a lot to learn and to refine. I will focus and practice more, both Djano and Django Rest Framework.</p>
+
+        </div>
+    </div>
 {% else %}
     <div class="auth-need">
     <div>
