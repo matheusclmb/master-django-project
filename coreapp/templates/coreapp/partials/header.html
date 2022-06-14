@@ -1,4 +1,5 @@
-{% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %} Home {% endblock %} {% block content %}
+{% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %}
+Home {% endblock %} {% block content %}
 <header class="header">
   <div class="header-container">
     <h1 class="header_title">
@@ -21,6 +22,9 @@
         </li>
         <li class="nav-item">
           <a href="{% url 'movie' %}" class="nav-link">Movie Generator</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'todo' %}" class="nav-link">To-Do App</a>
         </li>
       </ul>
       <div class="user-logged">

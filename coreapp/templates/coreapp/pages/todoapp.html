@@ -1,22 +1,16 @@
  {% extends 'coreapp/partials/base.html' %} {% load
 static %} {% block title %} To-Do-App {% endblock %} {% block content %} {% include 'coreapp/partials/header.html' %}
 {% load crispy_forms_tags %}
-<body class="container-fluid">
+{% comment %} <body class="container-fluid">
   {% if messages %} {% for message in messages %}
   <div class="alert alert-info">
     <strong>{{message}}</strong>
   </div>
   {% endfor %} {% endif %}
 
-  <center class="row">
-    <h1>Django To Do App</h1>
-    <hr />
-  </center>
-
-  <div class="row">
-    <div class="col-md-8">
       {% for i in list %}
-      <div class="card">
+      <div class="todo-structure">
+      <div class="todo-card">
         <center><b>{{i.title}}</b></center>
         <hr />
         {{i.urgency}} | {{i.due_date}}
@@ -27,13 +21,13 @@ static %} {% block title %} To-Do-App {% endblock %} {% block content %} {% incl
         <form
           action="/del/{{i.id}}"
           method="POST"
-          style="padding-right: 4%; padding-bottom: 3%"
+          
         >
           {% csrf_token %}
           <button
             value="remove"
             type="submit"
-            class="btn btn-primary"
+            class="btn-del"
             style="float: right"
           >
             <span class="glyphicon glyphicon-trash"></span> &nbsp; remove
@@ -42,8 +36,6 @@ static %} {% block title %} To-Do-App {% endblock %} {% block content %} {% incl
       </div>
       {% endfor%}
     </div>
-    <div class="col-md-1"></div>
-    <div class="col-md-3">
       <div class="submit_form">
         <form method="POST">
           {% csrf_token %} {{forms|crispy}}
@@ -52,7 +44,67 @@ static %} {% block title %} To-Do-App {% endblock %} {% block content %} {% incl
           </center>
         </form>
       </div>
-    </div>
+      </div>
+</body> {% endcomment %}
+{% if messages %} {% for message in messages %}
+  <div class="alert-msg">
+    <strong>{{message}}</strong>
   </div>
-</body>
+  {% endfor %} {% endif %}
+
+
+<div class="todoapp">
+    <div class="new-todo-structure">
+      <div class="submit-form">
+          <form method="POST" class="form-todo">
+              {% csrf_token %} {{forms|crispy}}
+              <center>
+              <input type="submit" class="submit-btn" value="submit" />
+              </center>
+          </form>
+      </div>
+  </div>
+  {% for todo in list %}
+  <div class="todo-structure">
+      <div class="todo-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Urgency</th>
+              <th>Type</th>
+              <th>Title</th>
+              <th>Due Date</th>
+              <th>Details</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td>{{todo.urgency}}</td>
+                <td>{{todo.type}}</td>
+                <td>{{todo.title}}</td>
+                <td>{{todo.due_date}}</td>
+                <td>{{todo.details}}</td>
+              </tr>
+            </tbody>
+          </thead>
+
+        </table>
+
+          <form
+            action="/del/{{todo.id}}"
+            method="POST" class="form-delete">
+            {% csrf_token %}
+            <button
+              value="remove"
+              type="submit"
+              class="btn-del"
+            >
+          <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </form>
+      </div>
+  </div>
+  {% endfor %}
+
+</div>
+
 {% endblock %}

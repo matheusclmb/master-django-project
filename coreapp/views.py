@@ -135,5 +135,5 @@ def todo(request):
 def del_item(request, item_id):
     item = ToDoItem.objects.get(id=item_id)
     item.delete()
-    messages.info(request, "item removed !!!")
+    messages.info(request, "Item removed.")
     return redirect('todo')

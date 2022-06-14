@@ -38,9 +38,6 @@ img {
 }
 
 /* removes spacing between cells in tables */
-table {
-  border-collapse: collapse;
-}
 
 /* revert the 'white-space' property for textarea elements on Safari */
 textarea {
@@ -292,4 +289,77 @@ body {
 .gen-btn:hover {
   cursor: pointer;
   background-color: #d6ccc2;
+}
+
+/* Todo */
+.todoapp {
+  margin-top: 60px;
+}
+
+.todo-structure {
+  background-color: #457b9d70;
+  border-radius: 8px;
+  width: 68%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px;
+  float: left;
+}
+
+.todo-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px 20px;
+  gap: 10px;
+}
+
+.new-todo-structure {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  float: right;
+}
+
+.submit-form input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #000;
+  color: #fff;
+  padding: 3px;
+  border-radius: 7px;
+  background-color: #457b9d70;
+}
+
+.submit-btn {
+  width: 100px !important;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #457b9d;
+  color: #fff;
+}
+
+th {
+  border: 1px solid #000;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+.alert-msg {
+  margin: 0 auto;
+  text-align: center;
 }
