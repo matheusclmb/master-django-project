@@ -363,3 +363,41 @@ table {
   margin: 0 auto;
   text-align: center;
 }
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.about-section {
+  gap: 20px;
+  line-height: 35px;
+}
+
+.about-section a {
+  color: #457b9d;
+  text-decoration: none;
+}
+
+.about-container p {
+  color: rgb(75, 75, 75);
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.li-title {
+  color: #000;
+}
+
+.problems,
+.applications li {
+  color: rgb(75, 75, 75);
+}
