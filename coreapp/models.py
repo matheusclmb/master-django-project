@@ -19,16 +19,6 @@ class City(models.Model):
         verbose_name_plural = "Cities"
 
 
-class ToDoList(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-
-    def get_absolute_url(self):
-        return reverse("list", args=[self.id])
-
-    def __str__(self):
-        return self.title
-
-
 class ToDoItem(models.Model):
     URGENCY_CHOICES = (
         ('☆', 'Low'),
@@ -37,19 +27,15 @@ class ToDoItem(models.Model):
         ('☆☆☆☆', 'Urgent'),
     )
 
+    type = models.CharField(max_length=25, default="Default")
     title = models.CharField(max_length=100)
+    details = models.TextField(max_length=500, blank=True)
     urgency = models.CharField(max_length=10, choices=URGENCY_CHOICES)
     created_date = models.DateTimeField(default=timezone.now)
     due_date = models.DateTimeField(default=one_week_calc)
-    todo_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
 
-    def get_absolute_url(self):
-        return reverse(
-            "item-update", args=[str(self.todo_list.id), str(self.id)]
-        )
-
-    def __str__(self):
-        return f"{self.title}: due {self.due_date}"
+    def __str__(self) -> str:
+        return self.title
 
     class Meta:
         ordering = ["due_date"]

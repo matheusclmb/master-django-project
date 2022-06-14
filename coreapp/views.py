@@ -12,11 +12,12 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 
 import requests
-from coreapp.forms import SignUpForm
+from coreapp.forms import SignUpForm, ToDoForm
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 from coreapp.forms import CityForm
-from .models import City, ToDoList, ToDoItem
+from .models import City,  ToDoItem
 
 import tmdbsimple as tmdb
 import random
@@ -111,3 +112,28 @@ def movie(request):
         raise Http404("Movie not found")
 
     return render(request, "coreapp/pages/moviegen.html", context)
+
+
+def todo(request):
+
+    item_list = ToDoItem.objects.order_by("-created_date")
+    if request.method == "POST":
+        form = ToDoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('todo')
+    form = ToDoForm()
+
+    page = {
+        "forms": form,
+        "list": item_list,
+        "title": "TODO LIST",
+    }
+    return render(request, 'coreapp/pages/todoapp.html', page)
+
+
+def del_item(request, item_id):
+    item = ToDoItem.objects.get(id=item_id)
+    item.delete()
+    messages.info(request, "item removed !!!")
+    return redirect('todo')

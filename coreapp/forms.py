@@ -1,7 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm, TextInput
-from .models import City
+from django.forms import ModelForm, TextInput, DateInput
+from .models import City, ToDoItem
+
+
+class DateInput(DateInput):
+    input_type = 'date'
 
 
 class SignUpForm(UserCreationForm):
@@ -16,4 +20,13 @@ class CityForm(ModelForm):
         fields = ["name"]
         widgets = {
             'name': TextInput(attrs={'class': 'input', 'placeholder': 'City Name'}),
+        }
+
+
+class ToDoForm(ModelForm):
+    class Meta:
+        model = ToDoItem
+        fields = ["type", "title", "details", "urgency", "due_date"]
+        widgets = {
+            'due_date': DateInput(),
         }
