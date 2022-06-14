@@ -55,8 +55,12 @@ def weather(request):
 
         form = CityForm(request.POST)
 
+
+
         if not City.objects.filter(name=form.data["name"]).exists():
             form.save()
+
+
 
     form = CityForm()
 
@@ -68,15 +72,20 @@ def weather(request):
         for city in cities:
             r = requests.get(url.format(city)).json()
 
-            city_weather = {
-                "city": city.name,
-                "temperature": r["main"]["temp"],
-                "description": r["weather"][0]["description"],
-                "icon": r["weather"][0]["icon"],
-            }
+            if r["cod"] != "404":
+                city_weather = {
+                    "city": city.name,
+                    "temperature": r["main"]["temp"],
+                    "description": r["weather"][0]["description"],
+                    "icon": r["weather"][0]["icon"],
+                }
 
-            weather_data.append(city_weather)
+                weather_data.append(city_weather)
 
+            elif r["cod"] == "404":
+                messages.error(request, "City not found. Try again.")
+                city.delete()
+            
     except KeyError:
         return HttpResponse("Error: City not found. Please delete from database. @ http://localhost:8000/admin/")
 
@@ -101,13 +110,15 @@ def movie(request):
                    "release": random_movie.release_date,
                    "author": random_movie.crew[0]["name"],
                    "poster": random_movie.poster_path,
-                   "overview": random_movie.overview, }
+                   "overview": random_movie.overview, 
+                   "id": movie_id,}
     except IndexError:
         context = {"title": random_movie.title,
                    "release": random_movie.release_date,
                    "author": "No Director found",
                    "poster": random_movie.poster_path,
-                   "overview": random_movie.overview, }
+                   "overview": random_movie.overview, 
+                   "id": movie_id,}
     except HTTPError:
         raise Http404("Movie not found")
 
@@ -137,3 +148,4 @@ def del_item(request, item_id):
     item.delete()
     messages.info(request, "Item removed.")
     return redirect('todo')
+

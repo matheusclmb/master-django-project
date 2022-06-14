@@ -1,11 +1,14 @@
-{% extends 'coreapp/partials/base.html' %} {% block title %}Home{% endblock %}
+{% extends 'coreapp/partials/base.html' %} 
+{% load static %}
+{% block css %} <link rel="stylesheet" href="{% static '/coreapp/css/style.css' %}">{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %} {% if user.is_authenticated %} {% include 'coreapp/partials/header.html' %}
 <div class="about-container">
   <div class="about-section">
     <h1>Welcome, {{ user.username }}!</h1>
     <h3>About Master-Django:</h3>
     <p>
-      Master-Django is a project create by me (<a
+      Master-Django is a project created by me (<a
         href="https://github.com/matheusclmb"
         target="_blank">@clmb</a
       >) with the purpouse to learn about the Django framework and to help me find my first job in this area.
@@ -71,3 +74,4 @@
   </div>
 </div>
 {% endif %} {% endblock %}
+

@@ -4,7 +4,7 @@ Movie Generator {% endblock %} {% block content %} {% include 'coreapp/partials/
         <img src="https://image.tmdb.org/t/p/original/{{ poster }}" alt="">
 
     <div class="movie-info">
-        <h1> {{ title }} </h1>
+        <a href="https://www.themoviedb.org/movie/{{ id }}" target="_blank" class="titlemovie"><h1> {{ title }} </h1></a>
         <h2>Initial Release: {{ release }} </h2>
         <h2>Director: {{ author }} </h2>
         <p> {{ overview }} </p>

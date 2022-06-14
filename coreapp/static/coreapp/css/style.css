@@ -7,6 +7,7 @@
     Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
     - The "symbol *" part is to solve Firefox SVG sprite bug
  */
+
 *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
   display: revert;
@@ -88,9 +89,40 @@ main {
   height: 100%;
 } */
 
+html {
+  font-family: "IBM Plex Mono", monospace;
+}
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "IBM Plex Mono", monospace;
   background-color: #edede9;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  outline: none !important;
+  padding: 10px;
+  font-size: 13px;
+  color: #fff !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2),
+    0 1px 1px rgba(255, 255, 255, 0.2);
+  -webkit-transition: box-shadow 0.5s ease !important;
+  -moz-transition: box-shadow 0.5s ease !important;
+  -o-transition: box-shadow 0.5s ease !important;
+  -ms-transition: box-shadow 0.5s ease !important;
+  transition: box-shadow 0.5s ease !important;
+}
+input:focus {
+  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4),
+    0 1px 1px rgba(255, 255, 255, 0.2) !important;
 }
 
 .auth-need {
@@ -170,11 +202,12 @@ body {
 }
 
 .header-container {
+  color: #fff;
   display: flex;
   height: 60px;
   justify-content: space-between;
   align-items: center;
-  background-color: #457b9d;
+  background-color: #262626;
 }
 
 .logo-link {
@@ -196,6 +229,19 @@ body {
   align-items: center;
   padding: 0 20px;
   gap: 20px;
+}
+
+.nav-item {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.nav-item:hover {
+  padding-bottom: 2px;
+  border-bottom: 1px solid #fff;
+}
+
+.logout:hover {
+  color: red;
 }
 
 .user-logged {
@@ -221,7 +267,8 @@ body {
   align-items: center;
   justify-content: space-evenly;
   border-radius: 8px;
-  width: 222px;
+  height: 120px;
+  width: 250px;
   padding: 3px;
   background-color: #dcdcdc;
 }
@@ -257,6 +304,14 @@ body {
   color: #fff;
 }
 
+.weather-widgets {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .movie-container {
   display: flex;
   justify-content: center;
@@ -273,6 +328,14 @@ body {
   margin-top: 20px;
   padding: 0 20px;
   gap: 20px;
+}
+
+.titlemovie {
+  border-bottom: 1px solid #000;
+}
+
+.titlemovie:hover {
+  color: blue;
 }
 
 .movie-container img {
@@ -297,7 +360,8 @@ body {
 }
 
 .todo-structure {
-  background-color: #457b9d70;
+  color: #000;
+  background-color: #dcdcdc;
   border-radius: 8px;
   width: 68%;
   display: flex;
@@ -390,14 +454,22 @@ h1 {
 }
 
 h3 {
+  font-weight: bold;
   font-size: 20px;
 }
 
 .li-title {
   color: #000;
+  font-weight: bold;
 }
 
 .problems,
 .applications li {
   color: rgb(75, 75, 75);
+}
+
+.alert-info {
+  text-align: center;
+  padding: 5px;
+  background-color: #d15757;
 }

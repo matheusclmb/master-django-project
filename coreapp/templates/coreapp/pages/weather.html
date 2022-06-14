@@ -1,5 +1,12 @@
 {% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %}
 Weather App {% endblock %} {% block content %} {% include 'coreapp/partials/header.html' %}
+
+  {% if messages %} {% for message in messages %}
+  <div class="alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %} {% endif %}
+
 <form method="POST" class="weather-csrf">
   {% csrf_token %}
   <div class="field">
@@ -10,6 +17,7 @@ Weather App {% endblock %} {% block content %} {% include 'coreapp/partials/head
   </div>
 </form>
 
+<div class="weather-widgets">
 {% for city_weather in weather_data %}
 <div class="box">
   <article class="media">
@@ -36,4 +44,7 @@ Weather App {% endblock %} {% block content %} {% include 'coreapp/partials/head
     </div>
   </article>
 </div>
-{% endfor %} {% endblock %}
+
+{% endfor %} 
+</div>
+{% endblock %}

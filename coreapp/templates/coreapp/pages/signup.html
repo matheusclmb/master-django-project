@@ -1,5 +1,10 @@
+{% extends 'coreapp/partials/base.html' %} 
+{% load static %}
+{% block css %} <link rel="stylesheet" href="{% static '/coreapp/css/login.css' %}">{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
-  
+{% block content %}
+<div class="signup">
 <h2>Sign up</h2>
  <form method="post">
     {% csrf_token %}
@@ -15,6 +20,7 @@
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <button type="submit" class="btn btn-primary btn-block btn-large">Sign up</button>
   </form>
- 
+ </div>
+{% endblock %}

@@ -1,5 +1,7 @@
- {% extends 'coreapp/partials/base.html' %} {% load
-static %} {% block title %} To-Do-App {% endblock %} {% block content %} {% include 'coreapp/partials/header.html' %}
+ {% extends 'coreapp/partials/base.html' %} {% load static %} 
+{% block css %} <link rel="stylesheet" href="{% static '/coreapp/css/style.css' %}"> {% endblock %}
+
+{% block title %} To-Do-App {% endblock %} {% block content %} {% include 'coreapp/partials/header.html' %}
 {% load crispy_forms_tags %}
 {% comment %} <body class="container-fluid">
   {% if messages %} {% for message in messages %}

@@ -1,5 +1,7 @@
-{% extends 'coreapp/partials/base.html' %} {% load static %} {% block title %}
-Home {% endblock %} {% block content %}
+{% extends 'coreapp/partials/base.html' %} {% load static %} 
+{% block title %} Home {% endblock %} 
+{% block css %} <link rel="stylesheet" href="{% static '/coreapp/css/style.css' %}">{% endblock %}
+{% block content %}
 <header class="header">
   <div class="header-container">
     <h1 class="header_title">
@@ -29,7 +31,11 @@ Home {% endblock %} {% block content %}
       </ul>
       <div class="user-logged">
         Hi {{ user.username }}!
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
+        <p>
+          <a href="{% url 'logout' %}" class="logout"
+            ><i class="fa-solid fa-right-from-bracket"></i
+          ></a>
+        </p>
       </div>
     </nav>
   </div>
