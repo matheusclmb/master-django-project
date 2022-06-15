@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 from django.contrib import messages
 
@@ -22,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-lrv)wv5oyo_z1i$o!qlvl8*b)rur&r0rktbkz9v%i*urm7by@!"
+load_dotenv()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,3 +137,14 @@ LOGOUT_REDIRECT_URL = "/"
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+CONTACT_EMAIL = 'ccolombomatheus@gmail.com'
+ADMIN_EMAIL = 'ccolombomatheus@gmail.com'
+
+
+# Twilio SendGrid
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')

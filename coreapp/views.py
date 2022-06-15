@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.views.generic import (
     ListView,
     CreateView,
@@ -12,9 +13,12 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 
 import requests
-from coreapp.forms import SignUpForm, ToDoForm
+from coreapp.forms import SignUpForm, ToDoForm, ContactForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 from coreapp.forms import CityForm
 from .models import City,  ToDoItem
@@ -149,3 +153,16 @@ def del_item(request, item_id):
     messages.info(request, "Item removed.")
     return redirect('todo')
 
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email_subject  = f"New contact {form.cleaned_data['name']} < {form.cleaned_data['email']} > : {form.cleaned_data['subject']}"
+            email_message  = f"{form.cleaned_data['message']}"
+            send_mail(email_subject, email_message, settings.CONTACT_EMAIL, [settings.ADMIN_EMAIL])
+            context = {"sucess": "Thank you for your message. Will get back to you soon."}
+            return render(request, "coreapp/pages/contact.html", context)
+    form = ContactForm()
+    context = {"form": form}
+    return render(request, "coreapp/pages/contact.html", context)

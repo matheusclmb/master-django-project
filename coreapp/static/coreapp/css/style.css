@@ -473,3 +473,14 @@ h3 {
   padding: 5px;
   background-color: #d15757;
 }
+
+.contact-form {
+  padding-top: 200px;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.contact-btn {
+  width: 20%;
+  text-align: center;
+}

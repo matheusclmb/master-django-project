@@ -9,5 +9,5 @@ urlpatterns = [
     path("movie/", view=views.movie, name="movie"),
     path("todo/", view=views.todo, name="todo"),
     path("del/<str:item_id>", view=views.del_item, name="del_item"),
-
+    path("contact/", view=views.contact, name="contact"),
 ]

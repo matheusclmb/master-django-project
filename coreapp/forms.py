@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, TextInput, DateInput
-from .models import City, ToDoItem
+from .models import City, Contact, ToDoItem
 
 
 class DateInput(DateInput):
@@ -30,3 +30,8 @@ class ToDoForm(ModelForm):
         widgets = {
             'due_date': DateInput(),
         }
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
